@@ -1,3 +1,4 @@
+
 plugins {
     id 'com.android.application'
 }
@@ -26,6 +27,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    allprojects {
+        repositories {
+            jcenter()
+        }
+    }
 }
 
 dependencies {
@@ -41,5 +47,9 @@ dependencies {
      */
 
     implementation 'com.qmuiteam:qmui:2.0.0-alpha10'
+
+    def qmui_arch_version = '2.0.0-alpha10'
+    implementation "com.qmuiteam:arch:$qmui_arch_version"
+    annotationProcessor  "com.qmuiteam:arch-compiler:$qmui_arch_version" // use annotationProcessor if java
 
 }

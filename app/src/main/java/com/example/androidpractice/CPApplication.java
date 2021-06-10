@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
+
 /**
  * androidPractice 的 Application 入口。
  * Created by yntense on 21/6/10.
@@ -19,6 +21,7 @@ public class CPApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        QMUISwipeBackActivityManager.init(this);
         Log.i(TAG, "onCreate:CPApplication ");
     }
 }
