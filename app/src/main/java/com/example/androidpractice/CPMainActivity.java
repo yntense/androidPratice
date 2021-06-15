@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CPMainActivity extends AppCompatActivity {
+import com.example.androidpractice.base.BaseFragmentActivity;
+
+public class CPMainActivity extends BaseFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
