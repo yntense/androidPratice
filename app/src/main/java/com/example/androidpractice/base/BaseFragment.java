@@ -26,19 +26,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.androidpractice.CPApplication;
+import com.example.androidpractice.CPMainActivity;
+import com.example.androidpractice.fragment.home.HomeFragment;
 import com.qmuiteam.qmui.arch.QMUIFragment;
 import com.qmuiteam.qmui.arch.SwipeBackLayout;
-import com.qmuiteam.qmui.skin.QMUISkinMaker;
+import com.qmuiteam.qmui.skin.QMUISkinManager;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.util.QMUIViewHelper;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
-import com.qmuiteam.qmuidemo.QDApplication;
-import com.qmuiteam.qmuidemo.QDMainActivity;
-import com.qmuiteam.qmuidemo.fragment.home.HomeFragment;
-import com.qmuiteam.qmuidemo.manager.QDDataManager;
-import com.qmuiteam.qmuidemo.manager.QDUpgradeManager;
-import com.qmuiteam.qmuidemo.model.QDItemDescription;
+
 
 /**
  * Created by cgspine on 2018/1/7.
@@ -63,12 +60,12 @@ public abstract class BaseFragment extends QMUIFragment {
 
     public void openSkinMaker(){
         if(mBindId < 0){
-            mBindId = QMUISkinMaker.getInstance().bind(this);
+//            mBindId = QMUISkinMaker.getInstance().bind(this);
         }
     }
 
     public void closeSkinMaker(){
-        QMUISkinMaker.getInstance().unBind(mBindId);
+//        QMUISkinMaker.getInstance().unBind(mBindId);
         mBindId = -1;
     }
 
@@ -89,7 +86,7 @@ public abstract class BaseFragment extends QMUIFragment {
     @Override
     public void onResume() {
         super.onResume();
-        QDUpgradeManager.getInstance(getContext()).runUpgradeTipTaskIfExist(getActivity());
+//        QDUpgradeManager.getInstance(getContext()).runUpgradeTipTaskIfExist(getActivity());
         Log.i(TAG, getClass().getSimpleName() + " onResume");
 
     }
@@ -118,33 +115,33 @@ public abstract class BaseFragment extends QMUIFragment {
     }
 
     protected void goToWebExplorer(@NonNull String url, @Nullable String title) {
-        Intent intent = QDMainActivity.createWebExplorerIntent(getContext(), url, title);
-        startActivity(intent);
+//        Intent intent = CPMainActivity.createWebExplorerIntent(getContext(), url, title);
+//        startActivity(intent);
     }
 
     protected void injectDocToTopBar(QMUITopBar topBar) {
-        final QDItemDescription description = QDDataManager.getInstance().getDescription(this.getClass());
-        if (description != null) {
-            topBar.addRightTextButton("DOC", QMUIViewHelper.generateViewId())
-                    .setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            goToWebExplorer(description.getDocUrl(), description.getName());
-                        }
-                    });
-        }
+//        final QDItemDescription description = QDDataManager.getInstance().getDescription(this.getClass());
+//        if (description != null) {
+//            topBar.addRightTextButton("DOC", QMUIViewHelper.generateViewId())
+//                    .setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            goToWebExplorer(description.getDocUrl(), description.getName());
+//                        }
+//                    });
+//        }
     }
 
     protected void injectDocToTopBar(QMUITopBarLayout topBar) {
-        final QDItemDescription description = QDDataManager.getInstance().getDescription(this.getClass());
-        if (description != null) {
-            topBar.addRightTextButton("DOC", QMUIViewHelper.generateViewId())
-                    .setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            goToWebExplorer(description.getDocUrl(), description.getName());
-                        }
-                    });
-        }
-    }
+//        final QDItemDescription description = QDDataManager.getInstance().getDescription(this.getClass());
+//        if (description != null) {
+//            topBar.addRightTextButton("DOC", QMUIViewHelper.generateViewId())
+//                    .setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            goToWebExplorer(description.getDocUrl(), description.getName());
+//                        }
+//                    });
+//        }
+   }
 }

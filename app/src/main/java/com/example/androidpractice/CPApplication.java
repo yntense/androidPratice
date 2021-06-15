@@ -13,6 +13,8 @@ import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
 public class CPApplication extends Application {
     private static final String TAG = "CPApplication";
 
+    public static boolean openSkinMake = false;
+
     private static Context context;
 
     public static Context getContext(){ return context;};
