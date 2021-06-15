@@ -25,6 +25,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.androidpractice.CPApplication;
 import com.qmuiteam.qmui.arch.QMUIFragment;
 import com.qmuiteam.qmui.arch.SwipeBackLayout;
 import com.qmuiteam.qmui.skin.QMUISkinMaker;
@@ -55,7 +56,7 @@ public abstract class BaseFragment extends QMUIFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(QDApplication.openSkinMake){
+        if(CPApplication.openSkinMake){
             openSkinMaker();
         }
     }
