@@ -9,14 +9,17 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.androidpractice.R;
 import com.example.androidpractice.base.BaseFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeFragment extends BaseFragment {
 
-//    @BindView(R.id.idpager)
+    @BindView(R.id.pager)
     ViewPager mViewPager;
     @Override
     protected View onCreateView() {
         FrameLayout layout = (FrameLayout) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_home, null);
-//        ButterKnife.bind(this, layout);
+        ButterKnife.bind(this, layout);
 //        initTabs();
 //        initPagers();
         return layout;

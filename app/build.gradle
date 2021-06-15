@@ -46,10 +46,13 @@ dependencies {
      *  qmui ref:https://qmuiteam.com/android/get-started
      */
 
+
     implementation 'com.qmuiteam:qmui:2.0.0-alpha10'
 
     def qmui_arch_version = '2.0.0-alpha10'
     implementation "com.qmuiteam:arch:$qmui_arch_version"
     annotationProcessor  "com.qmuiteam:arch-compiler:$qmui_arch_version" // use annotationProcessor if java
 
+    implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 }
