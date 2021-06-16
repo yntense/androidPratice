@@ -18,6 +18,8 @@ package com.example.androidpractice.fragment.home;
 
 import android.content.Context;
 
+import com.example.androidpractice.manager.QDDataManager;
+
 //import com.qmuiteam.qmuidemo.manager.QDDataManager;
 
 /**
@@ -36,8 +38,8 @@ public class HomeComponentsController extends HomeController {
         return "Components";
     }
 
-//    @Override
-//    protected ItemAdapter getItemAdapter() {
-//        return new ItemAdapter(getContext(), QDDataManager.getInstance().getComponentsDescriptions());
-//    }
+    @Override
+    protected ItemAdapter getItemAdapter() {
+        return new ItemAdapter(getContext(), QDDataManager.getInstance().getComponentsDescriptions());
+    }
 }

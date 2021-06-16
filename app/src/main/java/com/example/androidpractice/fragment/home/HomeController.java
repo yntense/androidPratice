@@ -28,7 +28,12 @@ import android.widget.LinearLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidpractice.R;
 import com.example.androidpractice.base.BaseFragment;
+import com.example.androidpractice.base.BaseRecyclerAdapter;
+import com.example.androidpractice.base.RecyclerViewHolder;
+import com.example.androidpractice.decorator.GridDividerItemDecoration;
+import com.example.androidpractice.model.QDItemDescription;
 import com.qmuiteam.qmui.util.QMUIViewHelper;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 //import com.qmuiteam.qmuidemo.QDMainActivity;
@@ -54,7 +59,7 @@ public abstract class HomeController extends LinearLayout {
     protected RecyclerView mRecyclerView;
 
     private HomeControlListener mHomeControlListener;
-//    private ItemAdapter mItemAdapter;
+    private ItemAdapter mItemAdapter;
     private int mDiffRecyclerViewSaveStateId = QMUIViewHelper.generateViewId();
 
     public HomeController(Context context) {
@@ -68,7 +73,7 @@ public abstract class HomeController extends LinearLayout {
         addView(mTopBar, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         addView(mRecyclerView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,0, 1f));
         initTopBar();
-//        initRecyclerView();
+        initRecyclerView();
     }
 
     protected void startFragment(BaseFragment fragment) {
@@ -94,38 +99,39 @@ public abstract class HomeController extends LinearLayout {
 //            }
 //        });
     }
-    //暂时不初始化 RecyclerView
-//    private void initRecyclerView() {
-//        mItemAdapter = getItemAdapter();
-//        mItemAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View itemView, int pos) {
-//                QDItemDescription item = mItemAdapter.getItem(pos);
-//                try {
-//                    BaseFragment fragment = item.getDemoClass().newInstance();
-//                    if (fragment instanceof QDNotchHelperFragment) {
+    //初始化 RecyclerView
+    private void initRecyclerView() {
+        mItemAdapter = getItemAdapter();
+        mItemAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int pos) {
+                QDItemDescription item = mItemAdapter.getItem(pos);
+                try {
+                    BaseFragment fragment = item.getDemoClass().newInstance();
+ //                   if (fragment instanceof QDNotchHelperFragment) {
 //                        Context context = getContext();
 //                        Intent intent = QDMainActivity.of(context, QDNotchHelperFragment.class);
 //                        context.startActivity(intent);
 //                        if (context instanceof Activity) {
 //                            ((Activity) context).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 //                        }
-//                    } else {
-//                        startFragment(fragment);
 //                    }
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        mRecyclerView.setAdapter(mItemAdapter);
-//        int spanCount = 3;
-//        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
-//        mRecyclerView.addItemDecoration(new GridDividerItemDecoration(getContext(), spanCount));
-//    }
+//                    else {
+                        startFragment(fragment);
+ //                   }
 
-//    protected abstract ItemAdapter getItemAdapter();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mRecyclerView.setAdapter(mItemAdapter);
+        int spanCount = 3;
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
+        mRecyclerView.addItemDecoration(new GridDividerItemDecoration(getContext(), spanCount));
+    }
+    //抽象方法，用于获取项的适配器
+    protected abstract ItemAdapter getItemAdapter();
 
     public interface HomeControlListener {
         void startFragment(BaseFragment fragment);
@@ -147,23 +153,23 @@ public abstract class HomeController extends LinearLayout {
         mRecyclerView.setId(id);
     }
 
-//    static class ItemAdapter extends BaseRecyclerAdapter<QDItemDescription> {
-//
-//        public ItemAdapter(Context ctx, List<QDItemDescription> data) {
-//            super(ctx, data);
-//        }
-//
-//        @Override
-//        public int getItemLayoutId(int viewType) {
-//            return R.layout.home_item_layout;
-//        }
-//
-//        @Override
-//        public void bindData(RecyclerViewHolder holder, int position, QDItemDescription item) {
-//            holder.getTextView(R.id.item_name).setText(item.getName());
-//            if (item.getIconRes() != 0) {
-//                holder.getImageView(R.id.item_icon).setImageResource(item.getIconRes());
-//            }
-//        }
-//    }
+    static class ItemAdapter extends BaseRecyclerAdapter<QDItemDescription> {
+
+        public ItemAdapter(Context ctx, List<QDItemDescription> data) {
+            super(ctx, data);
+        }
+
+        @Override
+        public int getItemLayoutId(int viewType) {
+            return R.layout.home_item_layout;
+        }
+
+        @Override
+        public void bindData(RecyclerViewHolder holder, int position, QDItemDescription item) {
+            holder.getTextView(R.id.item_name).setText(item.getName());
+            if (item.getIconRes() != 0) {
+                holder.getImageView(R.id.item_icon).setImageResource(item.getIconRes());
+            }
+        }
+    }
 }

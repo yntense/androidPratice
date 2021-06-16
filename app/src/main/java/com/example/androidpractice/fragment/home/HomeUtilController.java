@@ -18,6 +18,8 @@ package com.example.androidpractice.fragment.home;
 
 import android.content.Context;
 
+import com.example.androidpractice.manager.QDDataManager;
+
 //import com.qmuiteam.qmuidemo.manager.QDDataManager;
 
 /** 主界面，关于 QMUI Util 部分的展示。
@@ -35,8 +37,8 @@ public class HomeUtilController extends HomeController {
         return "Helper";
     }
 
-//    @Override
-//    protected ItemAdapter getItemAdapter() {
-//        return new ItemAdapter(getContext(), QDDataManager.getInstance().getUtilDescriptions());
-//    }
+    @Override
+    protected ItemAdapter getItemAdapter() {
+        return new ItemAdapter(getContext(), QDDataManager.getInstance().getUtilDescriptions());
+    }
 }
